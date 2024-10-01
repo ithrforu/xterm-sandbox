@@ -1,5 +1,6 @@
 import { Terminal } from '@xterm/xterm';
 import { FitAddon } from '@xterm/addon-fit';
+import XtermWebfont from 'xterm-webfont'
 
 const terminal = new Terminal({
   fontFamily: "Roboto Mono",
@@ -8,9 +9,11 @@ const terminal = new Terminal({
 
 const fitAddon = new FitAddon();
 terminal.loadAddon(fitAddon);
+terminal.loadAddon(new XtermWebfont());
+
 
 const terminalContainer = document.getElementById('xterm-container');
-terminal.open(terminalContainer);
+terminal.loadWebfontAndOpen(terminalContainer)
 
 terminal.onKey(({ key }) => {
   terminal.write(key);
